@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSalaryemployeeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSalaryemployeeLabel_idsalary}" for="idsalary" />
+                    <h:inputText id="idsalary" value="#{salaryemployeeController.selected.idsalary}" title="#{bundle.CreateSalaryemployeeTitle_idsalary}" required="true" requiredMessage="#{bundle.CreateSalaryemployeeRequiredMessage_idsalary}"/>
+                    <h:outputLabel value="#{bundle.CreateSalaryemployeeLabel_position}" for="position" />
+                    <h:inputText id="position" value="#{salaryemployeeController.selected.position}" title="#{bundle.CreateSalaryemployeeTitle_position}" />
+                    <h:outputLabel value="#{bundle.CreateSalaryemployeeLabel_salary}" for="salary" />
+                    <h:inputText id="salary" value="#{salaryemployeeController.selected.salary}" title="#{bundle.CreateSalaryemployeeTitle_salary}" />
+                    <h:outputLabel value="#{bundle.CreateSalaryemployeeLabel_idemployee}" for="idemployee" />
+                    <h:selectOneMenu id="idemployee" value="#{salaryemployeeController.selected.idemployee}" title="#{bundle.CreateSalaryemployeeTitle_idemployee}" required="true" requiredMessage="#{bundle.CreateSalaryemployeeRequiredMessage_idemployee}">
+                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{salaryemployeeController.create}" value="#{bundle.CreateSalaryemployeeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{salaryemployeeController.prepareList}" value="#{bundle.CreateSalaryemployeeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSalaryemployeeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

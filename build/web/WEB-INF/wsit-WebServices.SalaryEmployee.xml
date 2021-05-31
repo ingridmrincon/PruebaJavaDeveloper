@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="SalaryEmployee" targetNamespace="http://WebServices/" xmlns:tns="http://WebServices/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" 
+ >
+    <message name="psition"/>
+    <message name="psitionResponse"/>
+    <message name="postion"/>
+    <message name="postionResponse"/>
+    <message name="salary"/>
+    <message name="salaryResponse"/>
+    <portType name="SalaryEmployee">
+        <operation name="psition">
+            <input message="tns:psition"/>
+            <output message="tns:psitionResponse"/>
+        </operation>
+        <operation name="postion">
+            <input message="tns:postion"/>
+            <output message="tns:postionResponse"/>
+        </operation>
+        <operation name="salary">
+            <input message="tns:salary"/>
+            <output message="tns:salaryResponse"/>
+        </operation>
+    </portType>
+    <binding name="SalaryEmployeePortBinding" type="tns:SalaryEmployee">
+        <wsp:PolicyReference URI="#SalaryEmployeePortBindingPolicy"/>
+        <operation name="psition">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="postion">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="salary">
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="SalaryEmployee">
+        <port name="SalaryEmployeePort" binding="tns:SalaryEmployeePortBinding"/>
+    </service>
+    <wsp:Policy wsu:Id="SalaryEmployeePortBindingPolicy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <wsoma:OptimizedMimeSerialization/>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</definitions>

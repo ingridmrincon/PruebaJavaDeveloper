@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSalaryemployeeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSalaryemployeeEmpty}" rendered="#{salaryemployeeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{salaryemployeeController.items.rowCount > 0}">
+                    <h:outputText value="#{salaryemployeeController.pagination.pageFirstItem + 1}..#{salaryemployeeController.pagination.pageLastItem + 1}/#{salaryemployeeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{salaryemployeeController.previous}" value="#{bundle.Previous} #{salaryemployeeController.pagination.pageSize}" rendered="#{salaryemployeeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{salaryemployeeController.next}" value="#{bundle.Next} #{salaryemployeeController.pagination.pageSize}" rendered="#{salaryemployeeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{salaryemployeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalaryemployeeTitle_idsalary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsalary}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalaryemployeeTitle_position}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.position}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalaryemployeeTitle_salary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salary}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalaryemployeeTitle_idemployee}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idemployee}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{salaryemployeeController.prepareView}" value="#{bundle.ListSalaryemployeeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{salaryemployeeController.prepareEdit}" value="#{bundle.ListSalaryemployeeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{salaryemployeeController.destroy}" value="#{bundle.ListSalaryemployeeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{salaryemployeeController.prepareCreate}" value="#{bundle.ListSalaryemployeeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSalaryemployeeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

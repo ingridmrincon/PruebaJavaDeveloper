@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSalaryemployeeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSalaryemployeeLabel_idsalary}"/>
+                    <h:outputText value="#{salaryemployeeController.selected.idsalary}" title="#{bundle.ViewSalaryemployeeTitle_idsalary}"/>
+                    <h:outputText value="#{bundle.ViewSalaryemployeeLabel_position}"/>
+                    <h:outputText value="#{salaryemployeeController.selected.position}" title="#{bundle.ViewSalaryemployeeTitle_position}"/>
+                    <h:outputText value="#{bundle.ViewSalaryemployeeLabel_salary}"/>
+                    <h:outputText value="#{salaryemployeeController.selected.salary}" title="#{bundle.ViewSalaryemployeeTitle_salary}"/>
+                    <h:outputText value="#{bundle.ViewSalaryemployeeLabel_idemployee}"/>
+                    <h:outputText value="#{salaryemployeeController.selected.idemployee}" title="#{bundle.ViewSalaryemployeeTitle_idemployee}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{salaryemployeeController.destroyAndView}" value="#{bundle.ViewSalaryemployeeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSalaryemployeeEditLink}"/>
+                <br />
+                <h:commandLink action="#{salaryemployeeController.prepareCreate}" value="#{bundle.ViewSalaryemployeeCreateLink}" />
+                <br />
+                <h:commandLink action="#{salaryemployeeController.prepareList}" value="#{bundle.ViewSalaryemployeeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSalaryemployeeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
